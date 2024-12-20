@@ -4,6 +4,9 @@
 import os
 import shutil
 import unittest
+import sys
+
+sys.path.append('../src')
 from idz3 import generate_synthetic_tree, iterative_deepening_search
 
 
