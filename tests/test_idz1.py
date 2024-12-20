@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+import sys
 
-# Импортируем код из вашего файла
+sys.path.append('../src')
 from idz1 import BinaryTreeNode, iterative_deepening_search
 
 
