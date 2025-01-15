@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import unittest
 import sys
+import unittest
 
-sys.path.append('../src')
+
+sys.path.append("../src")
 from idz1 import BinaryTreeNode, iterative_deepening_search
 
 
@@ -37,6 +38,7 @@ class TestIterativeDeepeningSearch(unittest.TestCase):
         # Тест на пустое дерево
         empty_tree = None
         self.assertFalse(iterative_deepening_search(empty_tree, 1))
+
 
 if __name__ == "__main__":
     unittest.main()

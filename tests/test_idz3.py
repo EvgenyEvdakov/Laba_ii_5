@@ -3,10 +3,11 @@
 
 import os
 import shutil
-import unittest
 import sys
+import unittest
 
-sys.path.append('../src')
+
+sys.path.append("../src")
 from idz3 import generate_synthetic_tree, iterative_deepening_search
 
 

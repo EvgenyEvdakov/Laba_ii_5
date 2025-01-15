@@ -3,6 +3,7 @@
 
 # Поиск элемента в дереве с использованием алгоритма итеративного углубления
 
+
 class BinaryTreeNode:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -15,6 +16,7 @@ class BinaryTreeNode:
 
     def __repr__(self):
         return f"<{self.value}>"
+
 
 def depth_limited_search(node, goal, limit):
     if limit < 0:
@@ -40,6 +42,7 @@ def depth_limited_search(node, goal, limit):
 
     return cutoff
 
+
 def iterative_deepening_search(root, goal):
     max_depth = 10  # Максимальная глубина для поиска
     for limit in range(max_depth):
@@ -49,6 +52,7 @@ def iterative_deepening_search(root, goal):
         elif result is None:
             break  # Если результат None, то узел не найден
     return False  # Если ничего не найдено
+
 
 if __name__ == "__main__":
     # Построение дерева

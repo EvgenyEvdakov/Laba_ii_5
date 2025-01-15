@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import unittest
 import sys
+import unittest
 
-sys.path.append('../src')
+
+sys.path.append("../src")
 from idz2 import TreeNode, iterative_deepening_search
+
 
 class TestFileSearch(unittest.TestCase):
     def setUp(self):

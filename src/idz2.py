@@ -3,6 +3,7 @@
 
 # Поиск в файловой системе
 
+
 class TreeNode:
     def __init__(self, value):
         self.value = value
@@ -50,7 +51,7 @@ def iterative_deepening_search(root, goal):
         path = []  # Путь от корня до целевого узла
         result = depth_limited_search(root, goal, limit, path)
         if result is not None and result != "cutoff":
-            return ' -> '.join(result)  # Форматируем вывод пути
+            return " -> ".join(result)  # Форматируем вывод пути
     return "Целевой файл не найден"
 
 

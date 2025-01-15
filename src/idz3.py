@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Поиск самого глубокого файла. В файловом дереве необходимо найти самый глубоко расположенный файл,
-# независимо от его типа. Необходимо ограничить поиск 20 уровнями. Алгоритм должен обработать дерево
-# эффективно, избегая чрезмерного потребления ресурсов.
-
 import os
-from typing import List, Tuple
+from typing import Optional, Tuple
+
 
 def generate_synthetic_tree(base_path: str, depth: int, breadth: int):
     """
@@ -18,23 +15,28 @@ def generate_synthetic_tree(base_path: str, depth: int, breadth: int):
     if depth == 0:
         return
 
-    os.makedirs(base_path, exist_ok=True)
-    for i in range(breadth):
-        file_path = os.path.join(base_path, f"file_{i}.txt")
-        with open(file_path, "w") as f:
-            f.write("Sample content")
+    try:
+        os.makedirs(base_path, exist_ok=True)
+        for i in range(breadth):
+            file_path = os.path.join(base_path, f"file_{i}.txt")
+            with open(file_path, "w") as f:
+                f.write("Sample content")
 
-        dir_path = os.path.join(base_path, f"dir_{i}")
-        generate_synthetic_tree(dir_path, depth - 1, breadth)
+            dir_path = os.path.join(base_path, f"dir_{i}")
+            generate_synthetic_tree(dir_path, depth - 1, breadth)
+    except Exception as e:
+        print(f"Ошибка при создании дерева: {e}")
 
-def iterative_deepening_search(base_path: str, max_depth: int) -> Tuple[str, int]:
+
+def iterative_deepening_search(base_path: str, max_depth: int) -> Tuple[Optional[str], int]:
     """
     Поиск самого глубокого файла с использованием алгоритма итеративного углубления.
     :param base_path: Корневая директория для поиска.
     :param max_depth: Максимальная глубина поиска.
     :return: Кортеж с путем к самому глубокому файлу и его глубиной.
     """
-    def dfs_limited(path: str, depth: int, limit: int) -> Tuple[str, int]:
+
+    def dfs_limited(path: str, depth: int, limit: int) -> Tuple[Optional[str], int]:
         if depth > limit:
             return None, -1
 
@@ -57,6 +59,9 @@ def iterative_deepening_search(base_path: str, max_depth: int) -> Tuple[str, int
 
         return deepest_file, deepest_level
 
+    if not os.path.exists(base_path):
+        raise FileNotFoundError(f"Базовая директория {base_path} не существует.")
+
     deepest_file_overall = None
     deepest_level_overall = -1
 
@@ -67,6 +72,7 @@ def iterative_deepening_search(base_path: str, max_depth: int) -> Tuple[str, int
             deepest_level_overall = level
 
     return deepest_file_overall, deepest_level_overall
+
 
 if __name__ == "__main__":
     synthetic_tree_path = "synthetic_tree"
